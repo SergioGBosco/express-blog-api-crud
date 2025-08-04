@@ -1,9 +1,9 @@
 //importo i post
-const posts = require(`../public/imgs/posts`);
+const posts = require(`../data/posts.js`);
 
 //index
 const index = (req, res) => {
-  res.send(`lista dei post`)
+  res.send(`lista dei post che devo cambiare`)
 }
 
 //show

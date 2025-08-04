@@ -6,8 +6,8 @@ const express = require(`express`)
 
 const router = express.Router();
 
-//importo il controlle
-const postController = require(`../Controllers/postController.js`)
+//importo il controller
+const postController = require(`../controllers/postController.js`)
 
 //definisco le rotte
 
