@@ -22,6 +22,12 @@ const show = (req, res) => {
 
   //utilizzo l'id per recuperare uno dei post con find
   const post = posts.find(item => item.id === id);
+
+  //ultilizzo un messaggio di errore di post non trovato, non appena viene inserito un id che non esiste nella lista dei posts
+
+  if (!post) {
+    return res.status(404).json({ error: "Non trovato", message: "Post inesistente" })
+  }
   res.json(post)
 }
 
@@ -42,7 +48,19 @@ const modify = (req, res) => {
 
 //Delete
 const destroy = (req, res) => {
-  res.send(`Cancellazzione del post con ${req.params.id}`)
+  const id = parseInt(req.params.id);
+
+  //utilizzo l'id per recuperare uno dei post con find
+  const post = posts.find(item => item.id === id);
+
+  //ultilizzo un messaggio di errore di post non trovato, non appena viene inserito un id che non esiste nella lista dei posts
+
+  if (!post) {
+    return res.status(404).json({ error: "Non trovato", message: "Post inesistente" })
+  }
+  posts.splice(posts.indexOf(post), 1);
+  console.log(posts)
+  res.sendStatus(204);
 }
 
 module.exports = {
