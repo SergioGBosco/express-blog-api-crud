@@ -3,8 +3,18 @@ const posts = require(`../data/posts.js`);
 
 //index
 const index = (req, res) => {
-  res.send(`lista dei post che devo cambiare`)
+  const tags = req.query.tags
+  //creo la variabile per il filtraggio
+  let filteredPost = posts;
+
+  //pongo la condizione
+  if (tags != undefined) {
+    filteredPost = posts.filter(item => item.tags.includes(tags.toLowerCase()))
+  }
+
+  res.json(filteredPost);
 }
+
 
 //show
 const show = (req, res) => {
@@ -13,7 +23,7 @@ const show = (req, res) => {
 
 //create
 const create = (req, res) => {
-  res.send(`Creazione di un nuovo post`)
+  res.send(`Creazione di un nuovo post `)
 }
 
 //update
@@ -28,7 +38,7 @@ const modify = (req, res) => {
 
 //Delete
 const destroy = (req, res) => {
-  res.send(`Cancellazzione del post con id ${req.params.id}`)
+  res.send(`Cancellazzione del post con ${req.params.id}`)
 }
 
 module.exports = {
