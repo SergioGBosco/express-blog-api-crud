@@ -18,7 +18,11 @@ const index = (req, res) => {
 
 //show
 const show = (req, res) => {
-  res.send(`Visualizzo il post con id ${req.params.id}`)
+  const id = parseInt(req.params.id);
+
+  //utilizzo l'id per recuperare uno dei post con find
+  const post = posts.find(item => item.id === id);
+  res.json(post)
 }
 
 //create
