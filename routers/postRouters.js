@@ -6,35 +6,26 @@ const express = require(`express`)
 
 const router = express.Router();
 
+//importo il controlle
+const postController = require(`../Controllers/postController.js`)
+
 //definisco le rotte
 
 //index 
-router.get(`/`, (req, res) => {
-  res.send(`lista dei post`)
-});
+router.get(`/`, postController.index);
 //show
-router.get(`/:id`, (req, res) => {
-  res.send(`Visualizzo il post con id ${req.params.id}`)
-});
+router.get(`/:id`, postController.show);
 //Create
-router.post(`/`, (req, res) => {
-  res.send(`Creazione di un nuovo post`)
-});
+router.post(`/`, postController.create);
 
 //update
-router.put(`/:id`, (req, res) => {
-  res.send(`Modifica totale del post ${req.params.id}`)
-});
+router.put(`/:id`, postController.update);
 
 //modifica Parziale
-router.patch(`/:id`, (req, res) => {
-  res.send(`Modifica Parziale del post ${req.params.id}`)
-});
+router.patch(`/:id`, postController.modify);
 
 //Cancellazzione
-router.delete(`/:id`, (req, res) => {
-  res.send(`Cancellazzione del post con id ${req.params.id}`)
-})
+router.delete(`/:id`, postController.destroy)
 
 
 module.exports = router
