@@ -35,8 +35,15 @@ const show = (req, res) => {
 
 //create
 const create = (req, res) => {
+  const { title, content, tags } = req.body;
+  //pusho allinterno dell'array dei post il nuovo post
+  posts.push({
+    title,
+    content,
+    tags
+  });
   console.log(req.body);
-  res.send(`Creazione di un nuovo post `)
+  res.status(201).json("Inserimento avvenuto con successo")
 }
 
 //update
