@@ -14,6 +14,9 @@ const postsRouter = require(`./routers/postRouters`);
 
 app.use(express.static(`public`));
 
+//aggiungo il formato per il body
+app.use(express.json())
+
 app.use(`/posts`, postsRouter);
 
 //*definisco la rotta base del server

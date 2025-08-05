@@ -3,16 +3,18 @@ const posts = require(`../data/posts.js`);
 
 //index
 const index = (req, res) => {
-  const tags = req.query.tags
+  const tag = req.query.tag
   //creo la variabile per il filtraggio
   let filteredPost = posts;
 
   //pongo la condizione
-  if (tags != undefined) {
-    filteredPost = posts.filter(item => item.tags.includes(tags.toLowerCase()))
+  if (tag) {
+    filteredPost = posts.filter(item => {
+      return item.tag.map(tag => tag.toLowerCase()).includes(tag.toLowerCase())
+    });
   }
 
-  res.json(filteredPost);
+  res.json(filteredPost)
 }
 
 
@@ -33,6 +35,7 @@ const show = (req, res) => {
 
 //create
 const create = (req, res) => {
+  console.log(req.body);
   res.send(`Creazione di un nuovo post `)
 }
 
