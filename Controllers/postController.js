@@ -35,20 +35,42 @@ const show = (req, res) => {
 
 //create
 const create = (req, res) => {
+
+  //inserisco il nuovo id per poi trvare il post tramite il nuovo id
+  const newId = posts[posts.length - 1].id + 1;
+
   const { title, content, tags } = req.body;
   //pusho allinterno dell'array dei post il nuovo post
   posts.push({
+    id: newId,
     title,
     content,
     tags
   });
   console.log(req.body);
+  console.log(posts);
   res.status(201).json("Inserimento avvenuto con successo")
 }
 
 //update
 const update = (req, res) => {
-  res.send(`Modifica totale del post ${req.params.id}`)
+  //recupero l'id e lo trasfornmo in formato Numero
+  const id = parseInt(req.params.id);
+  //Cerco nell'array il post da modificare
+  const post = posts.find(item => item.id === id);
+  //genero una risposta nel caso in cui l'oggetto non viene trovato
+  if (!post) {
+    return res.status(404).json("Post non trovato ")
+  }
+  //recupero le coppie chiave valore della richiesta passata attraverso il body
+  const { title, content, tags } = req.body;
+
+  //i dat i dei post da modificare
+  post.title = title,
+    post.content = content,
+    post.tags = tags,
+
+    res.json(post)
 }
 
 //modify
