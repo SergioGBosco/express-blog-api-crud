@@ -5,6 +5,7 @@ const posts = require(`../data/posts.js`);
 const index = (req, res) => {
   const tag = req.query.tag
   //creo la variabile per il filtraggio
+
   let filteredPost = posts;
 
   //pongo la condizione
