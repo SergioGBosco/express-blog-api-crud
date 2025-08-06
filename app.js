@@ -7,6 +7,11 @@ const app = express();
 
 const port = 3000;
 
+//importo i middlewares precedenemente creati
+//errorsHandler
+const errorsHandler = require(`./middlewares/errorsHandler`)
+//Not found
+const notFound = require(`./middlewares/notFound`)
 //recupero il router
 const postsRouter = require(`./routers/postRouters`);
 
@@ -21,9 +26,10 @@ app.use(`/posts`, postsRouter);
 
 //*definisco la rotta base del server
 
-app.get("/", (req, res) => {
-  res.send("Creata rotta base del sel server")
-});
+//Utilizzo i middlewar
+//errorsHandler
+app.use(errorsHandler);
+app.use(notFound);
 
 
 
