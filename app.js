@@ -25,6 +25,8 @@ app.get("/", (req, res) => {
   res.send("Creata rotta base del sel server")
 });
 
+
+
 app.listen(port, () => {
   console.log(`server del blog in attesa nella porta ${port}`)
 
